@@ -1,89 +1,91 @@
-# 🧠 Trauma en Aprendizaje por Refuerzo (RL) con A2C en Breakout
 
-Este proyecto explora el **efecto de eventos traumáticos en el comportamiento de un agente de RL**, usando el juego **Breakout** y el algoritmo **A2C (Advantage Actor-Critic)** como base de entrenamiento.
+# 🧠 Trauma in Reinforcement Learning (RL) with A2C in Breakout
 
-## 🎯 Objetivo
+This project explores the **effect of traumatic events on the behavior of an RL agent**, using the game **Breakout** and the **A2C (Advantage Actor-Critic)** algorithm as the training foundation.
 
-Simular cómo un **evento traumático único** (castigo fuerte por romper un bloque) puede afectar el comportamiento a largo plazo de un agente. Compararemos dos agentes entrenados:
+## 🎯 Objective
 
-- 🟢 **Agente sin trauma**: Juega normalmente.
-- 🔴 **Agente con trauma**: Recibe un gran castigo al romper un bloque en el primer cuarto del episodio.
+Simulate how a **single traumatic event** (a strong penalty for breaking a block) can affect the long-term behavior of an agent. We’ll compare two trained agents:
 
-Queremos observar:
+- 🟢 **Non-traumatized agent**: Plays normally.  
+- 🔴 **Traumatized agent**: Receives a large penalty for breaking a block in the first quarter of the episode.
 
-- Cómo cambia el comportamiento del agente traumatizado.
-- Si evita la acción castigada.
-- Qué tanto se recupera con el tiempo.
+We aim to observe:
 
----
-
-## 🧪 ¿Por qué este experimento?
-
-Inspirado por fenómenos humanos como el trauma y el aprendizaje aversivo, este experimento busca evaluar cómo **un solo evento negativo significativo** puede alterar decisiones futuras en agentes de RL, especialmente en contextos donde se espera maximizar la recompensa.
+- How the traumatized agent's behavior changes.  
+- Whether it avoids the punished action.  
+- How much it recovers over time.
 
 ---
 
-## ⚙️ Estructura del Código
+## 🧪 Why this experiment?
 
-| Archivo                      | Descripción                                                                 |
-|-----------------------------|-----------------------------------------------------------------------------|
-| `a2c_breakout_trauma.py`     | Código principal que entrena ambos agentes (con y sin trauma) y guarda modelos. |
-| `view_agents.py`             | Visualiza el comportamiento de los agentes entrenados.                     |
-| `trauma_wrapper.py`          | Define el wrapper que aplica el trauma al agente.                          |
+Inspired by human phenomena like trauma and aversive learning, this experiment aims to assess how **a single significant negative event** can alter future decisions in RL agents — especially in contexts where reward maximization is expected.
 
 ---
 
-## ▶️ Cómo ejecutar
+## ⚙️ Code Structure
 
-### 1. Entrenar ambos agentes
+| File                     | Description                                                                 |
+|--------------------------|-----------------------------------------------------------------------------|
+| `a2c_breakout_trauma.py` | Main script that trains both agents (with and without trauma) and saves models. |
+| `view_agents.py`         | Visualizes the behavior of the trained agents.                              |
+| `trauma_wrapper.py`      | Defines the wrapper that applies trauma to the agent.                       |
+
+---
+
+## ▶️ How to Run
+
+### 1. Train both agents
 ```bash
 python a2c_breakout_trauma.py
 ```
-Esto entrenará dos agentes (con y sin trauma) y guardará los modelos.
+This will train both agents (with and without trauma) and save the models.
 
 
-### 2. Visualizar los agentes
+### 2. Visualize the agents
 ```bash
 python view_agents.py --specific N
 
 ```
-Muestra el episodio número N para ambos agentes.
+Displays episode number N for both agents.
 
-### 3. Ver Todos los episodios
 
+### 3. watch all episodes
 ```bash
 python view_agents.py
 
 ```
-Reproduce todos los episodios guardados de cada agente.
+Plays all saved episodes of each agent.
 
-## 📊 ¿Qué analizamos?
+## 📊 What do we analyze?
 
-- **Comportamiento post-trauma:** ¿El agente evita romper bloques temprano luego del castigo?
-- **Capacidad de recuperación:** ¿El agente vuelve a intentar la acción castigada si ve que es beneficiosa a largo plazo?
-- **Comparación cualitativa:** A través de los videos de episodios se pueden observar diferencias visibles en la estrategia adoptada.
-- **Rol del algoritmo:** A2C es on-policy, lo que lo hace más susceptible a evitar caminos castigados, aunque sean óptimos.
-
----
-
-## 🧠 Conclusiones esperadas
-
-- **El trauma introduce un sesgo** en el aprendizaje del agente, especialmente si ocurre en fases tempranas de entrenamiento.
-- **Agentes on-policy como A2C** tienden a volverse más conservadores ante castigos fuertes, evitando caminos que pueden ser óptimos.
-- El experimento busca evidenciar que incluso **una única experiencia negativa** puede tener un impacto duradero y observable.
-- Esto permite discutir paralelos con el aprendizaje humano, donde eventos traumáticos pueden moldear fuertemente la conducta futura.
+- **Post-trauma behavior:** Does the agent avoid breaking blocks early after being punished?  
+- **Recovery ability:** Does the agent try the punished action again if it sees long-term benefit?  
+- **Qualitative comparison:** Video episodes allow visual observation of strategic differences.  
+- **Algorithm's role:** A2C is on-policy, which makes it more prone to avoid punished paths — even if they are optimal.
 
 ---
 
-## 📦 Requisitos
+## 🧠 Expected Conclusions
 
-- Python 3.9+
-- `gymnasium[atari]`
-- `stable-baselines3`
-- `matplotlib`
-- `opencv-python` (si se usa grabación de video con OpenCV)
+- **Trauma introduces a bias** in the agent's learning process, especially if it occurs in early training stages.  
+- **On-policy agents like A2C** tend to become more conservative after harsh punishments, avoiding paths that might be optimal.  
+- The experiment aims to show that even **a single negative experience** can have a lasting and observable impact.  
+- This opens up discussions on parallels with human learning, where traumatic events can strongly shape future behavior.
 
-Instalación recomendada:
+---
+
+## 📦 Requirements
+
+- Python 3.9+  
+- `gymnasium[atari]`  
+- `stable-baselines3`  
+- `matplotlib`  
+- `opencv-python` (if using video recording with OpenCV)
+
+Recommended installation:
+
 ```bash
 pip install stable-baselines3[extra] gymnasium[atari] matplotlib opencv-python
 ```
